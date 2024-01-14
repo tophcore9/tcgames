@@ -20,5 +20,13 @@ extern char BORDER;
 extern char HERO_CHAR;
 extern char FEED_CHAR;
 
+enum Difficulty
+{
+    Easy,
+    Medium,
+    Hard
+};
+
+extern enum Difficulty CURRENT_DIFFICULTY;
 
 #endif //INIT_H

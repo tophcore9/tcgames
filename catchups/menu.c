@@ -49,7 +49,7 @@ int menu_action_handler(int current)
             run_game();
             break;
         case 1: // Settings
-            open_settings();
+            settings_handler();
             break;
         case 2: // Credits
             system("cls");
@@ -65,7 +65,7 @@ int menu_action_handler(int current)
     }
 }
 
-int open_settings()
+int settings_handler()
 {
     char input;
     int current = 0;
@@ -110,14 +110,91 @@ int settings_action_handler(int current)
     switch (current)
     {
         case 0: // Change difficulty
-            printf("Difficulty");
+            difficulty_handler();
             break;
         case 1: // Customise characters
-            printf("Characters");
+            customise_characters();
             break;
         case 2: // Exit
             return 1;
     }
-    getch();
     return 0;
+}
+
+const char* difficulty_str()
+{
+    switch (CURRENT_DIFFICULTY)
+    {
+        case Easy:
+            return "Easy";
+        case Medium:
+            return "Medium";
+        case Hard:
+            return "Hard";
+    }
+}
+
+int difficulty_handler()
+{
+    char input;
+    int current = 0;
+
+    while (1)
+    {
+        system("cls");
+        printf("========Select difficulty========\n"
+               "Current difficulty is %s\n", difficulty_str());
+
+        for (int i = 0; i < DIFFICULTIES; ++i)
+        {
+            if (i == current)
+            {
+                printf("[%s]\n", difficulty_options[i]);
+                continue;
+            }
+
+            printf("%s\n", difficulty_options[i]);
+        }
+
+        switch (input = getch())
+        {
+            case 'w':
+            case 'W':
+                if (current - 1 >= 0)
+                    --current;
+                break;
+            case 's':
+            case 'S':
+                if (current + 1 < DIFFICULTIES)
+                    ++current;
+                break;
+            case ENTER:
+                difficulty_action_handler(current);
+                return 0;
+        }
+    }
+}
+
+int difficulty_action_handler(int current)
+{
+    switch (current)
+    {
+        case 0: // Easy
+            CURRENT_DIFFICULTY = Easy;
+            break;
+        case 1: // Medium
+            CURRENT_DIFFICULTY = Medium;
+            break;
+        case 2: // Hard
+            CURRENT_DIFFICULTY = Hard;
+            break;
+        case 3: // Exit
+            break;
+    }
+    return 0;
+}
+
+void customise_characters()
+{
+
 }

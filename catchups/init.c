@@ -8,3 +8,5 @@ int SCORE = 0;
 char BORDER = '#';
 char HERO_CHAR = '@';
 char FEED_CHAR = '^';
+
+enum Difficulty CURRENT_DIFFICULTY = Easy;
