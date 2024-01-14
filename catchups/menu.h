@@ -7,6 +7,7 @@
 #define MENU_OPTIONS 4
 #define SETTINGS_OPTIONS 3
 #define DIFFICULTIES 4
+#define CHARACTERS 4
 
 static const char *menu_options[] = {
         "Start new game",
@@ -29,6 +30,13 @@ static const char *difficulty_options[] = {
         "Exit"
 };
 
+static const char *characters_options[] = {
+        "Hero character",
+        "Feed character",
+        "Border character",
+        "Exit"
+};
+
 // Main menu
 void menu_handler();
 int menu_action_handler(int current);
@@ -41,6 +49,8 @@ int settings_action_handler(int current);
 const char* difficulty_str();
 int difficulty_handler();
 int difficulty_action_handler(int current);
-void customise_characters();
+
+int characters_handler();
+int characters_action_handler(int current);
 
 #endif //MENU_H

@@ -10,13 +10,15 @@
 #define NULLIFIER 1
 #define ESC 27
 #define ENTER 13
+#define DEFAULT_COLS 20
+#define DEFAULT_ROWS 10
 
 extern int COLS;
 extern int ROWS;
 extern char **MAP;
 extern int SCORE;
 
-extern char BORDER;
+extern char BORDER_CHAR;
 extern char HERO_CHAR;
 extern char FEED_CHAR;
 

@@ -16,7 +16,7 @@ void show_map(struct CurrentHandle *handle)
         if (i == 0 || i == ROWS - NULLIFIER)
         {
             for (int k = 0; k < COLS - NULLIFIER; ++k)
-                MAP[i][k] = '#';
+                MAP[i][k] = BORDER_CHAR;
             continue;
         }
 
@@ -24,7 +24,7 @@ void show_map(struct CurrentHandle *handle)
         {
             if (j == 0 || j == COLS - NULLIFIER - 1)
             {
-                MAP[i][j] = '#';
+                MAP[i][j] = BORDER_CHAR;
                 continue;
             }
 
@@ -46,22 +46,22 @@ void movement_handler(struct CurrentHandle *handle)
     {
         case 'w':
         case 'W':
-            if (MAP[handle->hero->y - 1][handle->hero->x] != '#')
+            if (MAP[handle->hero->y - 1][handle->hero->x] != BORDER_CHAR)
                 MAP[handle->hero->y--][handle->hero->x] = ' ';
             break;
         case 's':
         case 'S':
-            if (MAP[handle->hero->y + 1][handle->hero->x] != '#')
+            if (MAP[handle->hero->y + 1][handle->hero->x] != BORDER_CHAR)
                 MAP[handle->hero->y++][handle->hero->x] = ' ';
             break;
         case 'a':
         case 'A':
-            if (MAP[handle->hero->y][handle->hero->x - 1] != '#')
+            if (MAP[handle->hero->y][handle->hero->x - 1] != BORDER_CHAR)
                 MAP[handle->hero->y][handle->hero->x--] = ' ';
             break;
         case 'd':
         case 'D':
-            if (MAP[handle->hero->y][handle->hero->x + 1] != '#')
+            if (MAP[handle->hero->y][handle->hero->x + 1] != BORDER_CHAR)
                 MAP[handle->hero->y][handle->hero->x++] = ' ';
             break;
     }
