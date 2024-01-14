@@ -242,19 +242,24 @@ int characters_action_handler(int current)
 {
     switch (current)
     {
-        case 0: // Hero character
+        case 0: // Reset
+            BORDER_CHAR = DEFAULT_BORDER_CHAR;
+            HERO_CHAR = DEFAULT_HERO_CHAR;
+            FEED_CHAR = DEFAULT_FEED_CHAR;
+            break;
+        case 1: // Hero character
             printf("Current hero's character: %c\n"
                    "Enter your own character: ", HERO_CHAR);
             HERO_CHAR = getchar();
             fflush(stdin);
             break;
-        case 1: // Feed character
+        case 2: // Feed character
             printf("Current feed's character: %c\n"
                    "Enter your own character: ", FEED_CHAR);
             FEED_CHAR = getchar();
             fflush(stdin);
             break;
-        case 2: // Border character
+        case 3: // Border character
             printf("Current border's character: %c\n"
                    "Enter your own character: ", BORDER_CHAR);
             BORDER_CHAR = getchar();

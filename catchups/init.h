@@ -12,6 +12,9 @@
 #define ENTER 13
 #define DEFAULT_COLS 20
 #define DEFAULT_ROWS 10
+#define DEFAULT_BORDER_CHAR '#'
+#define DEFAULT_HERO_CHAR '@'
+#define DEFAULT_FEED_CHAR '*'
 
 extern int COLS;
 extern int ROWS;

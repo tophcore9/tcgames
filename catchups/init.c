@@ -5,8 +5,8 @@ int ROWS = DEFAULT_ROWS;
 char **MAP = NULL;
 int SCORE = 0;
 
-char BORDER_CHAR = '#';
-char HERO_CHAR = '@';
-char FEED_CHAR = '^';
+char BORDER_CHAR = DEFAULT_BORDER_CHAR;
+char HERO_CHAR = DEFAULT_HERO_CHAR;
+char FEED_CHAR = DEFAULT_FEED_CHAR;
 
 enum Difficulty CURRENT_DIFFICULTY = Easy;
