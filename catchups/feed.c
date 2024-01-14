@@ -1,15 +1,11 @@
 #include "feed.h"
-#include <stdio.h>
 
-void init_feed(struct Feed *feed)
+int init_feed(struct Feed *feed)
 {
-    if (MAP != NULL)
+    assert(MAP != NULL);
+    do
     {
-        do
-        {
-            feed->x = rand() % ((COLS - 3) - 1 + 1) + 1;
-            feed->y = rand() % ((ROWS - 2) - 1 + 1) + 1;
-        } while (MAP[feed->y][feed->x] == HERO_CHAR);
-    }
-    else printf("WTFFFFF");
+        feed->x = rand() % ((COLS - 3) - 1 + 1) + 1;
+        feed->y = rand() % ((ROWS - 2) - 1 + 1) + 1;
+    } while (MAP[feed->y][feed->x] == HERO_CHAR);
 }

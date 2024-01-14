@@ -10,6 +10,6 @@ struct Hero
     char input;
 };
 
-void init_hero(struct Hero *hero);
+int init_hero(struct Hero *hero);
 
 #endif //HERO_H

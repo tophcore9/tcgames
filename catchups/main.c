@@ -1,10 +1,8 @@
-#include "game.h"
+#include "menu.h"
 
-/// TODO: Make interactive menu and dynamic settings for practice
 int main()
 {
-    if (run() != EXIT_SUCCESS)
-        puts("It seems that your program ended incorrect :(");
+    menu_handler();
 
     getch();
     return 0;

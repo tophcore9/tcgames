@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <time.h>
-#include <Windows.h>
+#include <assert.h>
 
 #define NULLIFIER 1
 #define ESC 27

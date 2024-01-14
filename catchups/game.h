@@ -4,7 +4,6 @@
 #include "init.h"
 #include "map.h"
 
-int run();
-int show_menu();
+int run_game();
 
 #endif //GAME_H

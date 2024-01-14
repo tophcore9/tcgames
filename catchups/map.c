@@ -1,10 +1,12 @@
 #include "map.h"
 
-void init_map()
+int init_map()
 {
     MAP = (char**)calloc(ROWS, sizeof(char*));
     for (int i = 0; i < ROWS; ++i)
         MAP[i] = (char*) calloc(COLS, sizeof(char));
+
+    return 0;
 }
 void show_map(struct CurrentHandle *handle)
 {

@@ -9,6 +9,6 @@ struct Feed
     int y;
 };
 
-void init_feed(struct Feed *feed);
+int init_feed(struct Feed *feed);
 
 #endif //FEED_H
