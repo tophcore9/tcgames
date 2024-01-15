@@ -15,6 +15,7 @@
 #define DEFAULT_BORDER_CHAR '#'
 #define DEFAULT_HERO_CHAR '@'
 #define DEFAULT_FEED_CHAR '*'
+#define DEFAULT_ENEMY_CHAR '&'
 
 extern int COLS;
 extern int ROWS;
@@ -24,6 +25,7 @@ extern int SCORE;
 extern char BORDER_CHAR;
 extern char HERO_CHAR;
 extern char FEED_CHAR;
+extern char ENEMY_CHAR;
 
 enum Difficulty
 {

@@ -10,4 +10,5 @@ add_executable(cathups main.c
         init.c
         game.c
         menu.c
+        enemy.c
 )

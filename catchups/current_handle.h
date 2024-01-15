@@ -3,10 +3,12 @@
 
 #include "hero.h"
 #include "feed.h"
+#include "enemy.h"
 
 struct CurrentHandle
 {
     struct Hero *hero;
+    struct Enemy *enemy;
     struct Feed *feed;
 };
 

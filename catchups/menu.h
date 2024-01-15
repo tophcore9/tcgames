@@ -7,7 +7,7 @@
 #define MENU_OPTIONS 4
 #define SETTINGS_OPTIONS 3
 #define DIFFICULTIES 4
-#define CHARACTERS 5
+#define CHARACTERS 6
 
 static const char *menu_options[] = {
         "Start new game",
@@ -33,6 +33,7 @@ static const char *difficulty_options[] = {
 static const char *characters_options[] = {
         "Reset",
         "- Hero character",
+        "- Enemy character",
         "- Feed character",
         "- Border character",
         "Exit"
