@@ -34,6 +34,12 @@ enum Difficulty
     Hard
 };
 
+struct Coord
+{
+    int x;
+    int y;
+};
+
 extern enum Difficulty CURRENT_DIFFICULTY;
 
 #endif //INIT_H
