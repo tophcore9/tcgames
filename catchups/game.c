@@ -1,9 +1,11 @@
 #include "game.h"
 
+/* Running the game */
 int run_game()
 {
     srand(time(NULL));
 
+    /* Base initialisation */
     struct Coord hero = {-1, -1};
     struct Coord enemy = {-1, -1};
     struct Coord feed = {-1, -1};
@@ -20,10 +22,9 @@ int run_game()
         system("cls");
         show_map(&handle);
         input = getch();
-        if (movement_handler(&handle, input) != 0)
+        if (movement_handler(&handle, input) != HERO_IS_ALIVE)
             break;
-    }
-    while (input != ESC);
+    } while (input != ESC);
 
     system("cls");
     printf("Game was ended!\nYour final score: %d", SCORE);
