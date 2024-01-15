@@ -3,13 +3,6 @@
 
 #include "init.h"
 
-struct Hero
-{
-    int x;
-    int y;
-    char input;
-};
-
-int init_hero(struct Hero *hero);
+int init_hero(struct Coord *hero);
 
 #endif //HERO_H

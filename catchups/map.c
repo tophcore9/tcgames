@@ -41,10 +41,10 @@ void show_map(struct CurrentHandle *handle)
     puts("Press esc to exit.");
 }
 
-int movement_handler(struct CurrentHandle *handle)
+int movement_handler(struct CurrentHandle *handle, char input)
 {
-    find_and_kill(handle->enemy);
-    switch (handle->hero->input = getch())
+    catch(handle->enemy);
+    switch (input)
     {
         case 'w':
         case 'W':

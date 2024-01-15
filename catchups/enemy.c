@@ -1,5 +1,18 @@
 #include "enemy.h"
 
+/* Enemy initialisation */
+int init_enemy(struct Coord *enemy)
+{
+    assert(MAP != NULL);
+    do
+    {
+        enemy->x = rand() % ((COLS - 3) - 1 + 1) + 1;
+        enemy->y = rand() % ((ROWS - 2) - 1 + 1) + 1;
+    } while (MAP[enemy->y][enemy->x] == HERO_CHAR &&
+             MAP[enemy->y][enemy->x] == FEED_CHAR);
+}
+
+/* Function that gets the coordinates of the main hero */
 struct Coord find_hero()
 {
     for (int i = 0; i < ROWS; ++i)
@@ -11,23 +24,15 @@ struct Coord find_hero()
             }
 }
 
-int init_enemy(struct Enemy *enemy)
-{
-    assert(MAP != NULL);
-    do
-    {
-        enemy->x = rand() % ((COLS - 3) - 1 + 1) + 1;
-        enemy->y = rand() % ((ROWS - 2) - 1 + 1) + 1;
-    } while (MAP[enemy->y][enemy->x] == HERO_CHAR &&
-             MAP[enemy->y][enemy->x] == FEED_CHAR);
-}
-
-void find_and_kill(struct Enemy *enemy)
+/* Function for catching main hero by the enemy */
+void catch(struct Coord *enemy)
 {
     struct Coord hero = find_hero();
 
+    /* Range from 1 to 2 */
     int step = rand() % (2 - 1 + 1) + 1;
 
+    /* Y logic */
     if (enemy->y == hero.y)
     {
         if (enemy->x - hero.x > 0)
@@ -35,6 +40,7 @@ void find_and_kill(struct Enemy *enemy)
         else
             move_right(enemy, step);
     }
+    /* X logic */
     else if (enemy->x == hero.x)
     {
         if (enemy->y - hero.y > 0)
@@ -42,28 +48,32 @@ void find_and_kill(struct Enemy *enemy)
         else
             move_down(enemy, step);
     }
-    else if (enemy->x > hero.x && enemy->y > hero.y) // Left top
+    /* Left top logic */
+    else if (enemy->x > hero.x && enemy->y > hero.y)
     {
         if (enemy->x - hero.x < enemy->y - enemy->y)
             move_down(enemy, step);
         else
             move_up(enemy, step);
     }
-    else if (enemy->x < hero.x && enemy->y > hero.y) // Right top
+    /* Right top logic */
+    else if (enemy->x < hero.x && enemy->y > hero.y)
     {
         if (enemy->x - hero.x < enemy->y - enemy->y)
             move_up(enemy, step);
         else
             move_down(enemy, step);
     }
-    else if (enemy->x > hero.x && enemy->y < hero.y) // Left bottom
+    /* Left bottom logic */
+    else if (enemy->x > hero.x && enemy->y < hero.y)
     {
         if (enemy->x - hero.x < enemy->y - enemy->y)
             move_right(enemy, step);
         else
             move_left(enemy, step);
     }
-    else if (enemy->x < hero.x && enemy->y < hero.y) // Right top
+    /* Right bottom logic */
+    else if (enemy->x < hero.x && enemy->y < hero.y)
     {
         if (enemy->x - hero.x < enemy->y - enemy->y)
             move_right(enemy, step);
@@ -72,25 +82,29 @@ void find_and_kill(struct Enemy *enemy)
     }
 }
 
-void move_up(struct Enemy *enemy, int step)
+/* Enemy movement to the top */
+void move_up(struct Coord *enemy, int step)
 {
     if (MAP[enemy->y - step][enemy->x] == BORDER_CHAR)
         step = 1;
     MAP[enemy->y -= step][enemy->x] = ' ';
 }
-void move_down(struct Enemy *enemy, int step)
+/* Enemy movement to the bottom */
+void move_down(struct Coord *enemy, int step)
 {
     if (MAP[enemy->y + step][enemy->x] == BORDER_CHAR)
         step = 1;
     MAP[enemy->y += step][enemy->x] = ' ';
 }
-void move_left(struct Enemy *enemy, int step)
+/* Enemy movement to the left */
+void move_left(struct Coord *enemy, int step)
 {
     if (MAP[enemy->y][enemy->x - step] == BORDER_CHAR)
         step = 1;
     MAP[enemy->y][enemy->x -= step] = ' ';
 }
-void move_right(struct Enemy *enemy, int step)
+/* Enemy movement to the right */
+void move_right(struct Coord *enemy, int step)
 {
     if (MAP[enemy->y][enemy->x + step] == BORDER_CHAR)
         step = 1;

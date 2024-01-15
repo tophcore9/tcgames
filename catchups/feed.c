@@ -1,6 +1,6 @@
 #include "feed.h"
 
-int init_feed(struct Feed *feed)
+int init_feed(struct Coord *feed)
 {
     assert(MAP != NULL);
     do

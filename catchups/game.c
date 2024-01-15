@@ -4,9 +4,9 @@ int run_game()
 {
     srand(time(NULL));
 
-    struct Hero hero = {-1, -1};
-    struct Enemy enemy = {-1, -1};
-    struct Feed feed = {-1, -1};
+    struct Coord hero = {-1, -1};
+    struct Coord enemy = {-1, -1};
+    struct Coord feed = {-1, -1};
     struct CurrentHandle handle = {&hero, &enemy, &feed};
 
     init_map();
@@ -14,14 +14,16 @@ int run_game()
     init_feed(handle.feed);
     init_enemy(handle.enemy);
 
+    char input;
     do
     {
         system("cls");
         show_map(&handle);
-        if (movement_handler(&handle) != 0)
+        input = getch();
+        if (movement_handler(&handle, input) != 0)
             break;
     }
-    while (hero.input != ESC);
+    while (input != ESC);
 
     system("cls");
     printf("Game was ended!\nYour final score: %d", SCORE);

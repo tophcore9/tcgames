@@ -7,9 +7,9 @@
 
 struct CurrentHandle
 {
-    struct Hero *hero;
-    struct Enemy *enemy;
-    struct Feed *feed;
+    struct Coord *hero;
+    struct Coord *enemy;
+    struct Coord *feed;
 };
 
 #endif //CURRENT_HANDLE_H

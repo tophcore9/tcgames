@@ -3,12 +3,6 @@
 
 #include "init.h"
 
-struct Feed
-{
-    int x;
-    int y;
-};
-
-int init_feed(struct Feed *feed);
+int init_feed(struct Coord *feed);
 
 #endif //FEED_H
