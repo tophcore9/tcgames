@@ -4,11 +4,16 @@
 #include "init.h"
 #include "game.h"
 
-#define MENU_OPTIONS 4
-#define SETTINGS_OPTIONS 3
-#define DIFFICULTIES 4
-#define CHARACTERS 6
+#define TRUE 1
+#define EXIT 1
 
+/* Selector of elements in specific function */
+int item_selector(int option_amount, int *current, int (*action_handler)(int));
+
+/* MAIN MENU */
+
+/* Options */
+#define MENU_OPTIONS 4
 static const char *menu_options[] = {
         "Start new game",
         "Settings",
@@ -16,13 +21,34 @@ static const char *menu_options[] = {
         "Exit"
 };
 
-/// TODO: Make a saving module
+/* Outputting the menu and selecting an item */
+void menu_handler();
+
+/* Handling the selected item */
+int menu_action_handler(int current);
+
+
+/* SETTINGS */
+
+/* Options */
+#define SETTINGS_OPTIONS 3
 static const char *settings_options[] = {
         "Change difficulty",
         "Customise characters",
         "Exit"
 };
 
+/* Outputting the settings and selecting an item */
+int settings_handler();
+
+/* Handling the selected item */
+int settings_action_handler(int current);
+
+
+/* DIFFICULTY */
+
+/* Options */
+#define DIFFICULTIES 4
 static const char *difficulty_options[] = {
         "Easy",
         "Medium",
@@ -30,6 +56,20 @@ static const char *difficulty_options[] = {
         "Exit"
 };
 
+/* Converting difficulty from enum to string */
+const char* difficulty_str();
+
+/* Outputting difficulties and selecting one of them */
+int difficulty_handler();
+
+/* Handling the selected item */
+int difficulty_action_handler(int current);
+
+
+/* CHARACTER CUSTOMISATION */
+
+/* Options */
+#define CHARACTERS 6
 static const char *characters_options[] = {
         "Reset",
         "- Hero character",
@@ -39,20 +79,10 @@ static const char *characters_options[] = {
         "Exit"
 };
 
-// Main menu
-void menu_handler();
-int menu_action_handler(int current);
-
-// Settings
-int settings_handler();
-int settings_action_handler(int current);
-
-// Difficulty
-const char* difficulty_str();
-int difficulty_handler();
-int difficulty_action_handler(int current);
-
+/* Outputting the character customisation menu and selecting an item */
 int characters_handler();
+
+/* Handling the selected item */
 int characters_action_handler(int current);
 
 #endif //MENU_H
