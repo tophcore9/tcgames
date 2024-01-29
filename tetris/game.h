@@ -12,6 +12,7 @@ extern Figure* current_figure;
 extern float game_speed_active;
 extern float game_speed_default;
 extern bool is_game_over;
+extern bool is_pause;
 
 extern Music music;
 extern Sound place_figure_sfx;
