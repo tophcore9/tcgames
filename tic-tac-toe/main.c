@@ -29,7 +29,7 @@ int main()
 
     clear_console();
 
-    while (game_state = (check_map_state(map) == 'N'))
+    while ((game_state = check_map_state(map)) == 'N')
     {
         clear_console();
         printf("\t\t\b%c turn\n", current_player);
@@ -52,8 +52,11 @@ int main()
 
     clear_console();
     print_map(map);
-    change_player(&current_player);
-    printf("Player '%c' Won!\n", current_player);
+
+    if (game_state == 'D')
+        printf("Draw!\n");
+    else
+        printf("Player '%c' Won!\n", game_state);
 
 
     return 0;
@@ -136,5 +139,9 @@ void change_player(char *player)
 
 void clear_console()
 {
+#ifdef _WIN32
+    system("cls");
+#else
     system("clear");
+#endif
 }
