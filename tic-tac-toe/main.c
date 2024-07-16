@@ -3,13 +3,16 @@
 
 void print_map(char map[9]);
 void reset_map(char map[9]);
-int  set_field(char map[9], char current_player, int index, char value);
+int  set_field(char map[9], char current_player, int index);
 char check_map_state(char map[9]);
 void change_player(char *player);
 
 int main()
 {
-    char current_player;
+    // Game initialization
+    char current_player, game_state;
+    char map[9];
+    reset_map(map);
 
     while (1)
     {
@@ -22,21 +25,29 @@ int main()
             break;
     }
 
-    printf("\t\t\b%c turn\n", current_player);
-    /*
-    while (check_map_state(map) == 'N')
+    while (game_state = (check_map_state(map) == 'N'))
     {
         printf("\t\t\b%c turn\n", current_player);
+
+        // Outputting map
+        print_map(map);
+
+        int index = -1;
+        while (1)
+        {
+            printf("Enter a field: ");
+            scanf("%d", &index);
+
+            if (set_field(map, current_player, index) == 0)
+                break;
+        }
         
+        change_player(&current_player);
     }
-    */
 
-    // Map initialization
-    char map[9];
-    reset_map(map);
-
-    // Outputting map
     print_map(map);
+    change_player(&current_player);
+    printf("Player '%c' Won!\n", current_player);
 
 
     return 0;
@@ -66,12 +77,12 @@ void reset_map(char map[9])
 }
 
 // Setting field in the map
-int set_field(char map[9], char current_player, int index, char value)
+int set_field(char map[9], char current_player, int index)
 {
     --index;
-    if (index < 9 && index > 0);
+    if (index < 9 && index >= 0)
     {
-        map[index] = value;
+        map[index] = current_player;
         return 0;
     }
 
@@ -95,7 +106,7 @@ char check_map_state(char map[9])
         }
     }
 
-    if      (map[0] != ' ' && map[0] == map[1] && map[1] == map[0]) return map[0];
+    if      (map[0] != ' ' && map[0] == map[1] && map[1] == map[2]) return map[0];
     else if (map[3] != ' ' && map[3] == map[4] && map[5] == map[3]) return map[3];
     else if (map[6] != ' ' && map[6] == map[7] && map[7] == map[8]) return map[6];
     else if (map[0] != ' ' && map[0] == map[3] && map[3] == map[6]) return map[0];
