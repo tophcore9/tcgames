@@ -5,6 +5,7 @@ void print_map(char map[9]);
 void reset_map(char map[9]);
 int  set_field(char map[9], char current_player, int index, char value);
 char check_map_state(char map[9]);
+void change_player(char *player);
 
 int main()
 {
@@ -15,11 +16,13 @@ int main()
         printf("Who will be first? (X/Y): ");
         scanf("%c", &current_player);
 
-        if (current_player == 'x' || current_player == 'X' || current_player == 'y' || current_player == 'Y')
+        current_player = toupper(current_player);
+
+        if (current_player == 'X' || current_player == 'Y')
             break;
     }
 
-    printf("\t\t\b%c turn\n", toupper(current_player));
+    printf("\t\t\b%c turn\n", current_player);
     /*
     while (check_map_state(map) == 'N')
     {
@@ -104,4 +107,12 @@ char check_map_state(char map[9])
     if (is_full == 1) return 'D';
 
     return 'N';
+}
+
+void change_player(char *player)
+{
+    if (*player == 'X')
+        *player = 'Y';
+    else if (*player == 'Y')
+        *player = 'X';
 }
