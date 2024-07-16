@@ -1,17 +1,13 @@
 #include <stdio.h>
 
-void print_map(_Bool map[3][3]);
-void reset_map(_Bool map[3][3]);
-int set_field(_Bool map[3][3], int x, int y, _Bool value);
+void print_map(char map[3][3]);
+void reset_map(char map[3][3]);
+int set_field(char map[3][3], int x, int y, char value);
 
 int main()
 {
     // Map initialization
-    _Bool map[3][3] = {0};
-    set_field(map, 0, 0, 1);
-    set_field(map, 0, 2, 1);
-    set_field(map, 1, 1, 1);
-    set_field(map, 2, 1, 1);
+    char map[3][3];
     reset_map(map);
 
     // Outputting map
@@ -22,31 +18,32 @@ int main()
 }
 
 // Outputting map
-void print_map(_Bool map[3][3])
+void print_map(char map[3][3])
 {
-    printf("| ");
+    int counter = 0;
+    printf("    Game\t\t   Scheme\n");
+    printf("+---+---+---+\t\t+---+---+---+\n");
     for (int i = 0; i < 3; ++i)
     {
-        for (int j = 0; j < 3; ++j)
-            printf("%d | ", map[i][j]);
+        printf("| %c | %c | %c |", map[i][0], map[i][1], map[i][2]);
 
-        if (i < 2)
-            printf("\n| ");
-        else
-            printf("\n");
+        printf("\t\t| %d | %d | %d |\n", counter + 1, counter + 2, counter + 3);
+        counter += 3;
+
+        printf("+---+---+---+\t\t+---+---+---+\n");
     }
 }
 
 // Resetting map
-void reset_map(_Bool map[3][3])
+void reset_map(char map[3][3])
 {
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
-            map[i][j] = 0;
+            map[i][j] = ' ';
 }
 
 // Setting field in the map
-int set_field(_Bool map[3][3], int x, int y, _Bool value)
+int set_field(char map[3][3], int x, int y, char value)
 {
     if (x < 3 && x >= 0 && y < 3 && y >= 0)
     {
