@@ -80,7 +80,7 @@ void reset_map(char map[9])
 int set_field(char map[9], char current_player, int index)
 {
     --index;
-    if (index < 9 && index >= 0)
+    if (index < 9 && index >= 0 && map[index] == ' ')
     {
         map[index] = current_player;
         return 0;
