@@ -1,0 +1,1 @@
+/usr/bin/cc "CMakeFiles/tic-tac-toe.dir/main.c.o" -o tic-tac-toe
