@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 void print_map(char map[9]);
 void reset_map(char map[9]);
 int  set_field(char map[9], char current_player, int index);
 char check_map_state(char map[9]);
 void change_player(char *player);
+void clear_console();
 
 int main()
 {
@@ -25,8 +27,11 @@ int main()
             break;
     }
 
+    clear_console();
+
     while (game_state = (check_map_state(map) == 'N'))
     {
+        clear_console();
         printf("\t\t\b%c turn\n", current_player);
 
         // Outputting map
@@ -45,6 +50,7 @@ int main()
         change_player(&current_player);
     }
 
+    clear_console();
     print_map(map);
     change_player(&current_player);
     printf("Player '%c' Won!\n", current_player);
@@ -107,11 +113,11 @@ char check_map_state(char map[9])
     }
 
     if      (map[0] != ' ' && map[0] == map[1] && map[1] == map[2]) return map[0];
-    else if (map[3] != ' ' && map[3] == map[4] && map[5] == map[3]) return map[3];
+    else if (map[3] != ' ' && map[3] == map[4] && map[4] == map[5]) return map[3];
     else if (map[6] != ' ' && map[6] == map[7] && map[7] == map[8]) return map[6];
     else if (map[0] != ' ' && map[0] == map[3] && map[3] == map[6]) return map[0];
     else if (map[1] != ' ' && map[1] == map[4] && map[4] == map[7]) return map[1];
-    else if (map[2] != ' ' && map[2] == map[5] && map[5] == map[8]) return map[2];
+    else if (map[2] != ' ' && map[2] == map[4] && map[4] == map[6]) return map[2];
     else if (map[0] != ' ' && map[0] == map[4] && map[4] == map[8]) return map[0];
     else if (map[2] != ' ' && map[2] == map[4] && map[4] == map[8]) return map[2];
     
@@ -126,4 +132,9 @@ void change_player(char *player)
         *player = 'Y';
     else if (*player == 'Y')
         *player = 'X';
+}
+
+void clear_console()
+{
+    system("clear");
 }
