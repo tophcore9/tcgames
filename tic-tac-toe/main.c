@@ -2,7 +2,8 @@
 
 void print_map(char map[3][3]);
 void reset_map(char map[3][3]);
-int set_field(char map[3][3], int x, int y, char value);
+int  set_field(char map[3][3], int x, int y, char value);
+char check_map_state(char map[3][3]);
 
 int main()
 {
@@ -52,4 +53,23 @@ int set_field(char map[3][3], int x, int y, char value)
     }
 
     return 1;
+}
+
+// Checking if someone win
+// X - X won
+// O - O won
+// D - Draw
+char check_map_state(char map[3][3])
+{
+    _Bool is_full = 1;
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+            if (map[i][j] == ' ')
+                is_full = 0;
+        }
+    }
+    
+    if (is_full == 1) return 'D';
 }
