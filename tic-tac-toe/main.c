@@ -1,12 +1,33 @@
 #include <stdio.h>
+#include <ctype.h>
 
 void print_map(char map[9]);
 void reset_map(char map[9]);
-int  set_field(char map[9], int index, char value);
+int  set_field(char map[9], char current_player, int index, char value);
 char check_map_state(char map[9]);
 
 int main()
 {
+    char current_player;
+
+    while (1)
+    {
+        printf("Who will be first? (X/Y): ");
+        scanf("%c", &current_player);
+
+        if (current_player == 'x' || current_player == 'X' || current_player == 'y' || current_player == 'Y')
+            break;
+    }
+
+    printf("\t\t\b%c turn\n", toupper(current_player));
+    /*
+    while (check_map_state(map) == 'N')
+    {
+        printf("\t\t\b%c turn\n", current_player);
+        
+    }
+    */
+
     // Map initialization
     char map[9];
     reset_map(map);
@@ -42,7 +63,7 @@ void reset_map(char map[9])
 }
 
 // Setting field in the map
-int set_field(char map[9], int index, char value)
+int set_field(char map[9], char current_player, int index, char value)
 {
     --index;
     if (index < 9 && index > 0);
@@ -58,7 +79,7 @@ int set_field(char map[9], int index, char value)
 // X - X won
 // O - O won
 // D - Draw
-// N - Nothing special
+// N - Game is not over
 char check_map_state(char map[9])
 {
     _Bool is_full = 1;
