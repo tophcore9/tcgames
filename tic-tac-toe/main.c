@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-void print_map(char map[3][3]);
-void reset_map(char map[3][3]);
-int  set_field(char map[3][3], int x, int y, char value);
-char check_map_state(char map[3][3]);
+void print_map(char map[9]);
+void reset_map(char map[9]);
+int  set_field(char map[9], int index, char value);
+char check_map_state(char map[9]);
 
 int main()
 {
     // Map initialization
-    char map[3][3];
+    char map[9];
     reset_map(map);
 
     // Outputting map
@@ -19,36 +19,35 @@ int main()
 }
 
 // Outputting map
-void print_map(char map[3][3])
+void print_map(char map[9])
 {
-    int counter = 0;
     printf("    Game\t\t   Scheme\n");
     printf("+---+---+---+\t\t+---+---+---+\n");
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 9;)
     {
-        printf("| %c | %c | %c |", map[i][0], map[i][1], map[i][2]);
+        printf("| %c | %c | %c |", map[i], map[i+1], map[i+2]);
 
-        printf("\t\t| %d | %d | %d |\n", counter + 1, counter + 2, counter + 3);
-        counter += 3;
+        printf("\t\t| %d | %d | %d |\n", i + 1, i + 2, i + 3);
+        i += 3;
 
         printf("+---+---+---+\t\t+---+---+---+\n");
     }
 }
 
 // Resetting map
-void reset_map(char map[3][3])
+void reset_map(char map[9])
 {
-    for (int i = 0; i < 3; ++i)
-        for (int j = 0; j < 3; ++j)
-            map[i][j] = ' ';
+    for (int i = 0; i < 9; ++i)
+        map[i] = ' ';
 }
 
 // Setting field in the map
-int set_field(char map[3][3], int x, int y, char value)
+int set_field(char map[9], int index, char value)
 {
-    if (x < 3 && x >= 0 && y < 3 && y >= 0)
+    --index;
+    if (index < 9 && index > 0);
     {
-        map[y][x] = value;
+        map[index] = value;
         return 0;
     }
 
@@ -59,17 +58,29 @@ int set_field(char map[3][3], int x, int y, char value)
 // X - X won
 // O - O won
 // D - Draw
-char check_map_state(char map[3][3])
+// N - Nothing special
+char check_map_state(char map[9])
 {
     _Bool is_full = 1;
-    for (int i = 0; i < 3; ++i)
+    for (int i = 0; i < 9; ++i)
     {
-        for (int j = 0; j < 3; ++j)
+        if (map[i] == ' ')
         {
-            if (map[i][j] == ' ')
-                is_full = 0;
+            is_full = 0;
+            break;
         }
     }
+
+    if      (map[0] != ' ' && map[0] == map[1] && map[1] == map[0]) return map[0];
+    else if (map[3] != ' ' && map[3] == map[4] && map[5] == map[3]) return map[3];
+    else if (map[6] != ' ' && map[6] == map[7] && map[7] == map[8]) return map[6];
+    else if (map[0] != ' ' && map[0] == map[3] && map[3] == map[6]) return map[0];
+    else if (map[1] != ' ' && map[1] == map[4] && map[4] == map[7]) return map[1];
+    else if (map[2] != ' ' && map[2] == map[5] && map[5] == map[8]) return map[2];
+    else if (map[0] != ' ' && map[0] == map[4] && map[4] == map[8]) return map[0];
+    else if (map[2] != ' ' && map[2] == map[4] && map[4] == map[8]) return map[2];
     
     if (is_full == 1) return 'D';
+
+    return 'N';
 }
